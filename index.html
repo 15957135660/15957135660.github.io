@@ -62,42 +62,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-test" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/21/test/" class="article-date">
-  <time datetime="2018-09-21T02:14:02.000Z" itemprop="datePublished">2018-09-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/21/test/">test</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/21/test/" data-id="cjmbdg9jx0003fwvx8nx4dpro" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-secondBlog" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/21/secondBlog/" class="article-date">
@@ -112,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/21/secondBlog/">secondBlog</a>
+      <a class="article-title" href="/2018/09/21/secondBlog/">m3u8</a>
     </h1>
   
 
@@ -120,13 +84,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>一个web端播放直播流项目，需前端监控直播流是否有效，同时h5移动端页面支持内联播放，现在记录在开发过程中遇到的一些问题。</p>
+<p>​    h5界面，初始阶段，前端仅仅使用了video标签用于播放m3u8格式视频，后续发现仅用标签播放存在一系列的兼容问题，故舍弃这个方案。同时也明确仅靠前端video播放器，播放rtmp流还是存在问题，web端播放的直播流一般是m3u8格式的hls流。</p>
+<p>​    直播流项目的一个核心需求是前端可以知道直播流是否有效，从而进行一些页面显示处理。</p>
+<p>​    在前端技术选型过程中，尝试了各款播放器插件，如：chimee 播放器，video.js ，aliplayer播放器。播放器均提供了相应的api，可以作为直播流失败的回调，最常见的就是error回调方法，但是经过兼容性测试发现，ios safari浏览器和ie11，edge浏览器流播放失败也不会走error回调。故依靠播放器提供的error回调方法来判断流是否有效是行不同的。下面我将说明判断直播流是否有效的方法。</p>
+<p>​    通过 Audio/Video DOM currentTime 属性可以判断音视频是否正常播放，开启定时器，去获取直播流当前播放的时间，确定当前时间是否发生变化，假如一段时间当前时间未发生改变则确定为该道直播流已发生异常。另：currentTime的兼容性效果比较好，各个浏览器均支持该属性的获取，此属性时h5 video中兼容性比较好的属性。</p>
+<p>​        附检测直播流是否异常的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">clearInterval(isVideoBreak);<span class="comment">//启动拉流定时器检查前，先清除检查定时器</span></span><br><span class="line">isVideoBreak = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> currentTime = self.player.getCurrentTime();<span class="comment">//获取播放器当前播放时间</span></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"currentTime"</span> + currentTime);</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"lastCheckTime"</span> + lastCheckTime);</span><br><span class="line">	<span class="keyword">if</span> (currentTime == lastCheckTime) &#123;<span class="comment">//播放器当前时间与上一次检查时间相等</span></span><br><span class="line">		<span class="keyword">if</span> (tryTimes == <span class="number">3</span>) &#123;<span class="comment">//视频播放异常情况处理</span></span><br><span class="line">             <span class="comment">//直播流异常处理代码</span></span><br><span class="line">			clearInterval(isVideoBreak);</span><br><span class="line">			self.getLiveStream();</span><br><span class="line">             <span class="comment">//归零上次检查时间和查实检查次数</span></span><br><span class="line">			lastCheckTime = <span class="number">0</span>;</span><br><span class="line">			tryTimes = <span class="number">0</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			tryTimes++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;<span class="comment">//上一次视频播放时间更新</span></span><br><span class="line">		lastCheckTime = currentTime;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<p>由于业务需求，项目需要判断直播流的恢复，然后继续重新播放该道直播流。</p>
+<p>这个就依托于后端的接口返回，明确直播系统是否正在进行直播推流，我司主要是通过阿里云的服务进行直播推流，阿里云官方有提供查询是否正在直播推流的接口，这边由后端实现。</p>
+<p>前端实现部分为当发现直播流异常时，开启检测流是否恢复的定时检测（向后端请求接口），当直播流恢复时，做后续的操作处理</p>
+
       
     </div>
     <footer class="article-footer">
       <a data-url="http://yoursite.com/2018/09/21/secondBlog/" data-id="cjmbdg9jt0001fwvxgcou4d23" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/h5-m3u8/">h5 m3u8</a></li></ul>
+
     </footer>
   </div>
   
@@ -301,9 +277,23 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5-m3u8/">h5 m3u8</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/h5-m3u8/" style="font-size: 10px;">h5 m3u8</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -322,11 +312,7 @@
       <ul>
         
           <li>
-            <a href="/2018/09/21/test/">test</a>
-          </li>
-        
-          <li>
-            <a href="/2018/09/21/secondBlog/">secondBlog</a>
+            <a href="/2018/09/21/secondBlog/">m3u8</a>
           </li>
         
           <li>
