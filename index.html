@@ -93,7 +93,16 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">clearInterval(isVideoBreak);<span class="comment">//启动拉流定时器检查前，先清除检查定时器</span></span><br><span class="line">isVideoBreak = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> currentTime = self.player.getCurrentTime();<span class="comment">//获取播放器当前播放时间</span></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"currentTime"</span> + currentTime);</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"lastCheckTime"</span> + lastCheckTime);</span><br><span class="line">	<span class="keyword">if</span> (currentTime == lastCheckTime) &#123;<span class="comment">//播放器当前时间与上一次检查时间相等</span></span><br><span class="line">		<span class="keyword">if</span> (tryTimes == <span class="number">3</span>) &#123;<span class="comment">//视频播放异常情况处理</span></span><br><span class="line">             <span class="comment">//直播流异常处理代码</span></span><br><span class="line">			clearInterval(isVideoBreak);</span><br><span class="line">			self.getLiveStream();</span><br><span class="line">             <span class="comment">//归零上次检查时间和查实检查次数</span></span><br><span class="line">			lastCheckTime = <span class="number">0</span>;</span><br><span class="line">			tryTimes = <span class="number">0</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			tryTimes++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;<span class="comment">//上一次视频播放时间更新</span></span><br><span class="line">		lastCheckTime = currentTime;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
 <p>由于业务需求，项目需要判断直播流的恢复，然后继续重新播放该道直播流。</p>
 <p>这个就依托于后端的接口返回，明确直播系统是否正在进行直播推流，我司主要是通过阿里云的服务进行直播推流，阿里云官方有提供查询是否正在直播推流的接口，这边由后端实现。</p>
-<p>前端实现部分为当发现直播流异常时，开启检测流是否恢复的定时检测（向后端请求接口），当直播流恢复时，做后续的操作处理</p>
+<p>前端实现部分为当发现直播流异常时，开启检测流是否恢复的定时检测（向后端请求接口），当直播流恢复时，做后续的操作处理。</p>
+<p>​    记录几个直播流播放过程中记录的问题：</p>
+<ol>
+<li><p>关于自动播放的问题，移动端关于自动播放，有些浏览器是不支持的，有些是无法自动播放的</p>
+</li>
+<li><p>关于内联播放的问题    设置playsinline  参数为true，ios支持内联播放，安卓有些浏览器无效，如：微信自带浏览器器，需对安卓微信自带做单独的兼容处理   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x5-video-player-type=&quot;h5&quot; x5-video-player-fullscreen=&quot;true&quot;</span><br></pre></td></tr></table></figure>
+<p>这里也发现一个问题，有些安卓微信自带浏览器的内核是非X5内核，需要明确做不同处理</p>
+</li>
+</ol>
 
       
     </div>
