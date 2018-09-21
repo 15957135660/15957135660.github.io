@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一个web端播放直播流项目，需前端监控直播流是否有效，同时h5移动端页面支持内联播放，现在记录在开发过程中遇到的一些问题。 ​    h5界面，初始阶段，前端仅仅使用了video标签用于播放m3u8格式视频，后续发现仅用标签播放存在一系列的兼容问题，故舍弃这个方案。同时也明确仅靠前端video播放器，播放rtmp流还是存在问题，web端播放的直播流一般是m3u8格式的hls流。 ​    直播流项">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-21T03:25:50.859Z">
+<meta property="og:updated_time" content="2018-09-21T08:50:52.618Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="m3u8">
 <meta name="twitter:description" content="一个web端播放直播流项目，需前端监控直播流是否有效，同时h5移动端页面支持内联播放，现在记录在开发过程中遇到的一些问题。 ​    h5界面，初始阶段，前端仅仅使用了video标签用于播放m3u8格式视频，后续发现仅用标签播放存在一系列的兼容问题，故舍弃这个方案。同时也明确仅靠前端video播放器，播放rtmp流还是存在问题，web端播放的直播流一般是m3u8格式的hls流。 ​    直播流项">
@@ -101,9 +101,11 @@
 <ol>
 <li><p>关于自动播放的问题，移动端关于自动播放，有些浏览器是不支持的，有些是无法自动播放的</p>
 </li>
-<li><p>关于内联播放的问题    设置playsinline  参数为true，ios支持内联播放，安卓有些浏览器无效，如：微信自带浏览器器，需对安卓微信自带做单独的兼容处理   </p>
+<li><p>关于移动端视频播放层级的问题，移动端有些浏览器播放视频是层级会置于最高位置，会覆盖页面上的所有节点和元素，获取不到video标签的点击事件。安卓uc浏览器这个现象就很突出，设置内联播放，视频还是在最顶层。</p>
+</li>
+<li><p>关于内联播放的问题    设置playsinline  参数为true，ios支持内联播放，安卓有些浏览器无效，如：微信自带浏览器器，需对安卓微信自带做单独的兼容处理。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x5-video-player-type=&quot;h5&quot; x5-video-player-fullscreen=&quot;true&quot;</span><br></pre></td></tr></table></figure>
-<p>这里也发现一个问题，有些安卓微信自带浏览器的内核是非X5内核，需要明确做不同处理</p>
+<p>这里也发现一个问题，有些安卓（红米4）微信自带浏览器的内核是非X5内核，播放器表现形式会不一致，需要做不同处理</p>
 </li>
 </ol>
 
