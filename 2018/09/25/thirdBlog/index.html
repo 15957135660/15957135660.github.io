@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>移动端h5开发注意点 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="关于移动端h5开发（h5页面和混合应用开发），有一些注意点和问题解决方案，在此做下记录和总结 1.移动端页面需要设置合理的meta头 &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no&amp;quot;/&amp;gt;">
+<meta name="keywords" content="h5 hybird app">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端h5开发注意点">
+<meta property="og:url" content="http://yoursite.com/2018/09/25/thirdBlog/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="关于移动端h5开发（h5页面和混合应用开发），有一些注意点和问题解决方案，在此做下记录和总结 1.移动端页面需要设置合理的meta头 &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no&amp;quot;/&amp;gt;">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="c:/Users/ADMINI~1/AppData/Local/Temp/1537840301281.png">
+<meta property="og:updated_time" content="2018-09-25T02:50:35.213Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端h5开发注意点">
+<meta name="twitter:description" content="关于移动端h5开发（h5页面和混合应用开发），有一些注意点和问题解决方案，在此做下记录和总结 1.移动端页面需要设置合理的meta头 &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no&amp;quot;/&amp;gt;">
+<meta name="twitter:image" content="c:/Users/ADMINI~1/AppData/Local/Temp/1537840301281.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-thirdBlog" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/25/thirdBlog/" class="article-date">
+  <time datetime="2018-09-25T01:14:42.000Z" itemprop="datePublished">2018-09-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      移动端h5开发注意点
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关于移动端h5开发（h5页面和混合应用开发），有一些注意点和问题解决方案，在此做下记录和总结</p>
+<p>1.移动端页面需要设置合理的meta头</p>
+<p><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no&quot;/&gt;</code> </p>
+<p>H5页面窗口自动调整到设备宽度，禁止用户缩放页面</p>
+<p>2.移动端页面，双击屏幕会复制文本内容，禁止复制、选中文本</p>
+<p><code>Element {-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}</code></p>
+<p>3.长时间按住页面出现闪退 </p>
+<p><code>Element { -webkit-touch-callout: none; }</code> </p>
+<p>4.active兼容处理 即 伪类 :active 失效</p>
+<p>方法一：body添加ontouchstart </p>
+<p>方法二：js给 document 绑定 touchstart 或 touchend 事件</p>
+<p>vue项目中的处理如下：</p>
+<p><img src="C:\Users\ADMINI~1\AppData\Local\Temp\1537840301281.png" alt="1537840301281"></p>
+<p>5.h5页面，ios，双击屏幕，页面会发生上移解决方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 阻止用户双击使屏幕上滑</span><br><span class="line">var agent = navigator.userAgent.toLowerCase() // 检测是否是ios</span><br><span class="line">var iLastTouch = null // 缓存上一次tap的时间</span><br><span class="line">if (agent.indexOf(&apos;iphone&apos;) &gt;= 0 || agent.indexOf(&apos;ipad&apos;) &gt;= 0) &#123;</span><br><span class="line">    document.body.addEventListener(&apos;touchend&apos;, function (event) &#123;</span><br><span class="line">        var iNow = new Date().getTime()</span><br><span class="line">        /** 第一次时将iLastTouch设为当前时间+1 */</span><br><span class="line">        iLastTouch = iLastTouch || iNow + 1 </span><br><span class="line">        var delta = iNow - iLastTouch</span><br><span class="line">        if (delta &lt; 500 &amp;&amp; delta &gt; 0) &#123;</span><br><span class="line">            event.preventDefault()</span><br><span class="line">            return false</span><br><span class="line">        &#125;</span><br><span class="line">        iLastTouch = iNow</span><br><span class="line">    &#125;, false)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/25/thirdBlog/" data-id="cjmh4ybng0004swvxb9alsf7c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/h5-hybird-app/">h5 hybird app</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/25/forthBlog/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          js日常注意点
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/21/secondBlog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">m3u8</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5-hybird-app/">h5 hybird app</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5-m3u8/">h5 m3u8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/h5-hybird-app/" style="font-size: 10px;">h5 hybird app</a> <a href="/tags/h5-m3u8/" style="font-size: 10px;">h5 m3u8</a> <a href="/tags/js/" style="font-size: 10px;">js</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/25/forthBlog/">js日常注意点</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/25/thirdBlog/">移动端h5开发注意点</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/21/secondBlog/">m3u8</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/20/firstBlog/">how to start a personal blog</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/17/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

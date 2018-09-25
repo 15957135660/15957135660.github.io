@@ -62,6 +62,101 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-forthBlog" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/25/forthBlog/" class="article-date">
+  <time datetime="2018-09-25T02:47:06.000Z" itemprop="datePublished">2018-09-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/25/forthBlog/">js日常注意点</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文记录前端日常开发过程中遇到的一些注意点</p>
+<p>1.名称，详情等内容过长时的过长处理</p>
+<p>2.js最大值有你限制，有些数字格式的值超过限制，转化就会出错 </p>
+<p>3.当请求参数关键字为特殊字符如：”&amp;%”等等，get方式必须进行编码转换 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/25/forthBlog/" data-id="cjmh4ybn40001swvxibg6ncg1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-thirdBlog" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/25/thirdBlog/" class="article-date">
+  <time datetime="2018-09-25T01:14:42.000Z" itemprop="datePublished">2018-09-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/25/thirdBlog/">移动端h5开发注意点</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关于移动端h5开发（h5页面和混合应用开发），有一些注意点和问题解决方案，在此做下记录和总结</p>
+<p>1.移动端页面需要设置合理的meta头</p>
+<p><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no&quot;/&gt;</code> </p>
+<p>H5页面窗口自动调整到设备宽度，禁止用户缩放页面</p>
+<p>2.移动端页面，双击屏幕会复制文本内容，禁止复制、选中文本</p>
+<p><code>Element {-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}</code></p>
+<p>3.长时间按住页面出现闪退 </p>
+<p><code>Element { -webkit-touch-callout: none; }</code> </p>
+<p>4.active兼容处理 即 伪类 :active 失效</p>
+<p>方法一：body添加ontouchstart </p>
+<p>方法二：js给 document 绑定 touchstart 或 touchend 事件</p>
+<p>vue项目中的处理如下：</p>
+<p><img src="C:\Users\ADMINI~1\AppData\Local\Temp\1537840301281.png" alt="1537840301281"></p>
+<p>5.h5页面，ios，双击屏幕，页面会发生上移解决方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 阻止用户双击使屏幕上滑</span><br><span class="line">var agent = navigator.userAgent.toLowerCase() // 检测是否是ios</span><br><span class="line">var iLastTouch = null // 缓存上一次tap的时间</span><br><span class="line">if (agent.indexOf(&apos;iphone&apos;) &gt;= 0 || agent.indexOf(&apos;ipad&apos;) &gt;= 0) &#123;</span><br><span class="line">    document.body.addEventListener(&apos;touchend&apos;, function (event) &#123;</span><br><span class="line">        var iNow = new Date().getTime()</span><br><span class="line">        /** 第一次时将iLastTouch设为当前时间+1 */</span><br><span class="line">        iLastTouch = iLastTouch || iNow + 1 </span><br><span class="line">        var delta = iNow - iLastTouch</span><br><span class="line">        if (delta &lt; 500 &amp;&amp; delta &gt; 0) &#123;</span><br><span class="line">            event.preventDefault()</span><br><span class="line">            return false</span><br><span class="line">        &#125;</span><br><span class="line">        iLastTouch = iNow</span><br><span class="line">    &#125;, false)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/25/thirdBlog/" data-id="cjmh4ybng0004swvxb9alsf7c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/h5-hybird-app/">h5 hybird app</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-secondBlog" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/21/secondBlog/" class="article-date">
@@ -100,6 +195,10 @@
 </li>
 <li><p>关于移动端视频播放层级的问题，移动端有些浏览器播放视频是层级会置于最高位置，会覆盖页面上的所有节点和元素，获取不到video标签的点击事件。安卓uc浏览器这个现象就很突出，设置内联播放，视频还是在最顶层。</p>
 </li>
+<li><p>x5内核解决问题 <a href="http://bbs.mb.qq.com/thread-1945347-1-1.html" target="_blank" rel="noopener">http://bbs.mb.qq.com/thread-1945347-1-1.html</a> </p>
+</li>
+<li><p>video.js api 文档   <a href="https://docs.videojs.com/docs/guides/api.html" target="_blank" rel="noopener">https://docs.videojs.com/docs/guides/api.html</a> </p>
+</li>
 <li><p>关于内联播放的问题    设置playsinline  参数为true，ios支持内联播放，安卓有些浏览器无效，如：微信自带浏览器器，需对安卓微信自带做单独的兼容处理。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x5-video-player-type=&quot;h5&quot; x5-video-player-fullscreen=&quot;true&quot;</span><br></pre></td></tr></table></figure>
 <p>这里也发现一个问题，有些安卓（红米4）微信自带浏览器的内核是非X5内核，播放器表现形式会不一致，需要做不同处理</p>
@@ -109,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/21/secondBlog/" data-id="cjmbdg9jt0001fwvxgcou4d23" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/21/secondBlog/" data-id="cjmh4ybnc0002swvxbnn9o9ls" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/h5-m3u8/">h5 m3u8</a></li></ul>
@@ -223,7 +322,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/20/firstBlog/" data-id="cjmbdg9jv0002fwvxe7sujc49" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/20/firstBlog/" data-id="cjmh4ybnu000aswvx4nzljdax" class="article-share-link">Share</a>
       
       
     </footer>
@@ -268,7 +367,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/17/hello-world/" data-id="cjmbdg9in0000fwvxal3rikgk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/17/hello-world/" data-id="cjmh4ybmy0000swvxgibd588t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -291,7 +390,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5-m3u8/">h5 m3u8</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5-hybird-app/">h5 hybird app</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5-m3u8/">h5 m3u8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li></ul>
     </div>
   </div>
 
@@ -301,7 +400,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/h5-m3u8/" style="font-size: 10px;">h5 m3u8</a>
+      <a href="/tags/h5-hybird-app/" style="font-size: 10px;">h5 hybird app</a> <a href="/tags/h5-m3u8/" style="font-size: 10px;">h5 m3u8</a> <a href="/tags/js/" style="font-size: 10px;">js</a>
     </div>
   </div>
 
@@ -321,6 +420,14 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/09/25/forthBlog/">js日常注意点</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/25/thirdBlog/">移动端h5开发注意点</a>
+          </li>
         
           <li>
             <a href="/2018/09/21/secondBlog/">m3u8</a>
