@@ -62,6 +62,93 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-sixthBlog" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/25/sixthBlog/" class="article-date">
+  <time datetime="2018-09-25T06:11:57.000Z" itemprop="datePublished">2018-09-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/25/sixthBlog/">vue知识点</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.vue-cli    <a href="https://segmentfault.com/a/1190000011275993" target="_blank" rel="noopener">Vue2.0搭建Vue脚手架（vue-cli）</a></p>
+<p>2.项目文件各文件含义：</p>
+<p><img src="https://images2017.cnblogs.com/blog/1312098/201801/1312098-20180119150558693-331010907.png" alt="https://images2017.cnblogs.com/blog/1312098/201801/1312098-20180119150558693-331010907.png"> </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/25/sixthBlog/" data-id="cjmhd6mxg0005lwvxklzk90ap" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-fifthBlog" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/25/fifthBlog/" class="article-date">
+  <time datetime="2018-09-25T05:35:50.000Z" itemprop="datePublished">2018-09-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/25/fifthBlog/">vue项目总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>接手开发了一个vue项目，踩过一些坑，本文记录一些开发过程中遇到的问题和总结</p>
+<p>1.ios10 Safari无痕浏览模式，vue项目出现白屏问题 ，无法成功加载页面。</p>
+<p>原因：由于页面中使用了sessionStorage和localStorage，ios10系统的无痕浏览模式不支持</p>
+<p>附：<a href="http://www.fly63.com/article/detial/287" target="_blank" rel="noopener">vue框架开发出现页面空白、白屏的解决方法汇总</a> </p>
+<p>2.vue项目打包异常      <a href="https://blog.csdn.net/landl_ww/article/details/79149461" target="_blank" rel="noopener">解决vue在ie9中的兼容问题</a> </p>
+<p>3.vue单页面应用，返回上一页，没有将组件设置的参数值恢复为原始状态</p>
+<p><img src="C:\Users\ADMINI~1\AppData\Local\Temp\1537858219123.png" alt="1537858219123"></p>
+<p>4.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/25/fifthBlog/" data-id="cjmhd6mx40000lwvxt7vkvqyy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue-h5/">vue h5</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-forthBlog" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/25/forthBlog/" class="article-date">
@@ -92,7 +179,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/25/forthBlog/" data-id="cjmh4ybn40001swvxibg6ncg1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/25/forthBlog/" data-id="cjmhd6mxe0003lwvx7aycxtz9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -143,11 +230,12 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 阻止用户双击使屏幕上滑</span><br><span class="line">var agent = navigator.userAgent.toLowerCase() // 检测是否是ios</span><br><span class="line">var iLastTouch = null // 缓存上一次tap的时间</span><br><span class="line">if (agent.indexOf(&apos;iphone&apos;) &gt;= 0 || agent.indexOf(&apos;ipad&apos;) &gt;= 0) &#123;</span><br><span class="line">    document.body.addEventListener(&apos;touchend&apos;, function (event) &#123;</span><br><span class="line">        var iNow = new Date().getTime()</span><br><span class="line">        /** 第一次时将iLastTouch设为当前时间+1 */</span><br><span class="line">        iLastTouch = iLastTouch || iNow + 1 </span><br><span class="line">        var delta = iNow - iLastTouch</span><br><span class="line">        if (delta &lt; 500 &amp;&amp; delta &gt; 0) &#123;</span><br><span class="line">            event.preventDefault()</span><br><span class="line">            return false</span><br><span class="line">        &#125;</span><br><span class="line">        iLastTouch = iNow</span><br><span class="line">    &#125;, false)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>6.上下拉动滚动条时卡顿、慢</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    -webkit-overflow-scrolling: touch; </span><br><span class="line">    overflow-scrolling: touch; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>7.iphoneX底部白边解决   <a href="http://www.yyyweb.com/5006.html" target="_blank" rel="noopener">http://www.yyyweb.com/5006.html</a> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/25/thirdBlog/" data-id="cjmh4ybng0004swvxb9alsf7c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/25/thirdBlog/" data-id="cjmhd6mxx000dlwvx0q2ss406" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/h5-hybird-app/">h5 hybird app</a></li></ul>
@@ -210,7 +298,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/21/secondBlog/" data-id="cjmh4ybnc0002swvxbnn9o9ls" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/21/secondBlog/" data-id="cjmhd6mxf0004lwvxdkr8rxnv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/h5-m3u8/">h5 m3u8</a></li></ul>
@@ -324,7 +412,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/20/firstBlog/" data-id="cjmh4ybnu000aswvx4nzljdax" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/20/firstBlog/" data-id="cjmhd6mxz000elwvxgytxt3fr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -369,7 +457,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/17/hello-world/" data-id="cjmh4ybmy0000swvxgibd588t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/17/hello-world/" data-id="cjmhd6mx90001lwvxagiz5gwj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -392,7 +480,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5-hybird-app/">h5 hybird app</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5-m3u8/">h5 m3u8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5-hybird-app/">h5 hybird app</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5-m3u8/">h5 m3u8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-h5/">vue h5</a></li></ul>
     </div>
   </div>
 
@@ -402,7 +490,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/h5-hybird-app/" style="font-size: 10px;">h5 hybird app</a> <a href="/tags/h5-m3u8/" style="font-size: 10px;">h5 m3u8</a> <a href="/tags/js/" style="font-size: 10px;">js</a>
+      <a href="/tags/h5-hybird-app/" style="font-size: 10px;">h5 hybird app</a> <a href="/tags/h5-m3u8/" style="font-size: 10px;">h5 m3u8</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/vue-h5/" style="font-size: 10px;">vue h5</a>
     </div>
   </div>
 
@@ -424,6 +512,14 @@
       <ul>
         
           <li>
+            <a href="/2018/09/25/sixthBlog/">vue知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/25/fifthBlog/">vue项目总结</a>
+          </li>
+        
+          <li>
             <a href="/2018/09/25/forthBlog/">js日常注意点</a>
           </li>
         
@@ -433,14 +529,6 @@
         
           <li>
             <a href="/2018/09/21/secondBlog/">m3u8</a>
-          </li>
-        
-          <li>
-            <a href="/2018/09/20/firstBlog/">how to start a personal blog</a>
-          </li>
-        
-          <li>
-            <a href="/2018/09/17/hello-world/">Hello World</a>
           </li>
         
       </ul>
